@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E45976CF2118EDEC005E3733 /* CommandLineUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E45976CD2118EDEC005E3733 /* CommandLineUI.cpp */; };
+		E45976D42119816C005E3733 /* BoardLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E45976D22119816C005E3733 /* BoardLogic.cpp */; };
 		E4F90784210B9C15007FEEEA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4F90783210B9C15007FEEEA /* main.cpp */; };
+		E4F9078D210B9EA6007FEEEA /* SudokuCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4F9078B210B9EA6007FEEEA /* SudokuCell.cpp */; };
+		E4F90790210BD808007FEEEA /* SudokuBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4F9078E210BD808007FEEEA /* SudokuBoard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +27,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E45976CD2118EDEC005E3733 /* CommandLineUI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLineUI.cpp; sourceTree = "<group>"; };
+		E45976CE2118EDEC005E3733 /* CommandLineUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandLineUI.hpp; sourceTree = "<group>"; };
+		E45976D22119816C005E3733 /* BoardLogic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoardLogic.cpp; sourceTree = "<group>"; };
+		E45976D32119816C005E3733 /* BoardLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardLogic.hpp; sourceTree = "<group>"; };
 		E4F90780210B9C15007FEEEA /* SudokuSolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SudokuSolver; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4F90783210B9C15007FEEEA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E4F90783210B9C15007FEEEA /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E4F9078B210B9EA6007FEEEA /* SudokuCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SudokuCell.cpp; sourceTree = "<group>"; };
+		E4F9078C210B9EA6007FEEEA /* SudokuCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SudokuCell.hpp; sourceTree = "<group>"; };
+		E4F9078E210BD808007FEEEA /* SudokuBoard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SudokuBoard.cpp; sourceTree = "<group>"; };
+		E4F9078F210BD808007FEEEA /* SudokuBoard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SudokuBoard.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +50,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E45976D021198129005E3733 /* Source files */ = {
+			isa = PBXGroup;
+			children = (
+				E4F90783210B9C15007FEEEA /* main.cpp */,
+				E4F9078B210B9EA6007FEEEA /* SudokuCell.cpp */,
+				E4F9078E210BD808007FEEEA /* SudokuBoard.cpp */,
+				E45976CD2118EDEC005E3733 /* CommandLineUI.cpp */,
+				E45976D22119816C005E3733 /* BoardLogic.cpp */,
+			);
+			path = "Source files";
+			sourceTree = "<group>";
+		};
+		E45976D121198140005E3733 /* Header files */ = {
+			isa = PBXGroup;
+			children = (
+				E45976D32119816C005E3733 /* BoardLogic.hpp */,
+				E4F9078C210B9EA6007FEEEA /* SudokuCell.hpp */,
+				E4F9078F210BD808007FEEEA /* SudokuBoard.hpp */,
+				E45976CE2118EDEC005E3733 /* CommandLineUI.hpp */,
+			);
+			path = "Header files";
+			sourceTree = "<group>";
+		};
 		E4F90777210B9C15007FEEEA = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +92,8 @@
 		E4F90782210B9C15007FEEEA /* SudokuSolver */ = {
 			isa = PBXGroup;
 			children = (
-				E4F90783210B9C15007FEEEA /* main.cpp */,
+				E45976D121198140005E3733 /* Header files */,
+				E45976D021198129005E3733 /* Source files */,
 			);
 			path = SudokuSolver;
 			sourceTree = "<group>";
@@ -118,7 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F9078D210B9EA6007FEEEA /* SudokuCell.cpp in Sources */,
+				E4F90790210BD808007FEEEA /* SudokuBoard.cpp in Sources */,
+				E45976D42119816C005E3733 /* BoardLogic.cpp in Sources */,
 				E4F90784210B9C15007FEEEA /* main.cpp in Sources */,
+				E45976CF2118EDEC005E3733 /* CommandLineUI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
