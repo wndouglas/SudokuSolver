@@ -31,6 +31,7 @@
 		E45976CE2118EDEC005E3733 /* CommandLineUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandLineUI.hpp; sourceTree = "<group>"; };
 		E45976D22119816C005E3733 /* BoardLogic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoardLogic.cpp; sourceTree = "<group>"; };
 		E45976D32119816C005E3733 /* BoardLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardLogic.hpp; sourceTree = "<group>"; };
+		E45976D62120CC5B005E3733 /* Point.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point.hpp; sourceTree = "<group>"; };
 		E4F90780210B9C15007FEEEA /* SudokuSolver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SudokuSolver; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F90783210B9C15007FEEEA /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E4F9078B210B9EA6007FEEEA /* SudokuCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SudokuCell.cpp; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		E45976D121198140005E3733 /* Header files */ = {
 			isa = PBXGroup;
 			children = (
+				E45976D62120CC5B005E3733 /* Point.hpp */,
 				E45976D32119816C005E3733 /* BoardLogic.hpp */,
 				E4F9078C210B9EA6007FEEEA /* SudokuCell.hpp */,
 				E4F9078F210BD808007FEEEA /* SudokuBoard.hpp */,

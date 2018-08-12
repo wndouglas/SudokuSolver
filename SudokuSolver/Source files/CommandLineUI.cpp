@@ -39,57 +39,57 @@ void CommandLineUI::ManPopulateSudoku(SudokuBoard &board)
             count++;
         }
         
-        board.FillCell(value, row, column, true);
+        board.FillCell(value, row, column);
     } while(line != "e");
 }
 
 void CommandLineUI::AutoPopulateSudoku(SudokuBoard &board)
 {
-    board.FillCell(2, 1, 3, true);
-    board.FillCell(1, 1, 4, true);
-    board.FillCell(3, 1, 6, true);
+    board.FillCell(2, 1, 3);
+    board.FillCell(1, 1, 4);
+    board.FillCell(3, 1, 6);
     
-    board.FillCell(8, 2, 1, true);
-    board.FillCell(4, 2, 5, true);
-    board.FillCell(2, 2, 8, true);
+    board.FillCell(8, 2, 1);
+    board.FillCell(4, 2, 5);
+    board.FillCell(2, 2, 8);
     
-    board.FillCell(7, 3, 1, true);
-    board.FillCell(4, 3, 3, true);
-    board.FillCell(6, 3, 4, true);
-    board.FillCell(8, 3, 5, true);
-    board.FillCell(2, 3, 6, true);
-    board.FillCell(3, 3, 8, true);
-    board.FillCell(1, 3, 9, true);
+    board.FillCell(7, 3, 1);
+    board.FillCell(4, 3, 3);
+    board.FillCell(6, 3, 4);
+    board.FillCell(8, 3, 5);
+    board.FillCell(2, 3, 6);
+    board.FillCell(3, 3, 8);
+    board.FillCell(1, 3, 9);
     
-    board.FillCell(6, 4, 1, true);
-    board.FillCell(9, 4, 3, true);
-    board.FillCell(1, 4, 7, true);
+    board.FillCell(6, 4, 1);
+    board.FillCell(9, 4, 3);
+    board.FillCell(1, 4, 7);
 
-    board.FillCell(1, 5, 2, true);
-    board.FillCell(8, 5, 3, true);
-    board.FillCell(7, 5, 5, true);
-    board.FillCell(6, 5, 7, true);
-    board.FillCell(5, 5, 8, true);
+    board.FillCell(1, 5, 2);
+    board.FillCell(8, 5, 3);
+    board.FillCell(7, 5, 5);
+    board.FillCell(6, 5, 7);
+    board.FillCell(5, 5, 8);
     
-    board.FillCell(7, 6, 3, true);
-    board.FillCell(8, 6, 7, true);
-    board.FillCell(2, 6, 9, true);
+    board.FillCell(7, 6, 3);
+    board.FillCell(8, 6, 7);
+    board.FillCell(2, 6, 9);
     
-    board.FillCell(1, 7, 1, true);
-    board.FillCell(8, 7, 2, true);
-    board.FillCell(7, 7, 4, true);
-    board.FillCell(3, 7, 5, true);
-    board.FillCell(4, 7, 6, true);
-    board.FillCell(2, 7, 7, true);
-    board.FillCell(9, 7, 9, true);
+    board.FillCell(1, 7, 1);
+    board.FillCell(8, 7, 2);
+    board.FillCell(7, 7, 4);
+    board.FillCell(3, 7, 5);
+    board.FillCell(4, 7, 6);
+    board.FillCell(2, 7, 7);
+    board.FillCell(9, 7, 9);
 
-    board.FillCell(2, 8, 2, true);
-    board.FillCell(5, 8, 5, true);
-    board.FillCell(7, 8, 9, true);
+    board.FillCell(2, 8, 2);
+    board.FillCell(5, 8, 5);
+    board.FillCell(7, 8, 9);
     
-    board.FillCell(2, 9, 4, true);
-    board.FillCell(8, 9, 6, true);
-    board.FillCell(4, 9, 7, true);
+    board.FillCell(2, 9, 4);
+    board.FillCell(8, 9, 6);
+    board.FillCell(4, 9, 7);
 }
 
 void CommandLineUI::BoardInvalidMessage() const

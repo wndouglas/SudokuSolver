@@ -4,16 +4,6 @@
 SudokuCell::SudokuCell() : currentValue(0), isDetermined(false)
 {}
 
-bool SudokuCell::GetIsDetermined() const
-{
-    return this->isDetermined;
-}
-
-void SudokuCell::SetIsDetermined(bool isDetermined)
-{
-    this->isDetermined = isDetermined;
-}
-
 int SudokuCell::GetCurrentValue() const
 {
     return this->currentValue;

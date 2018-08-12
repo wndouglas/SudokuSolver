@@ -6,6 +6,7 @@ using namespace std;
 // Public methods
 bool BoardLogic::UpdateBoard(SudokuBoard &board) const
 {
+    /*
     bool isBoardValid = true;
     for(int i = 1; i <= BOARD_HEIGHT; i++)
     {
@@ -44,17 +45,22 @@ bool BoardLogic::UpdateBoard(SudokuBoard &board) const
             break;
     }
     return isBoardValid;
+     */
+    return true;
 }
 
 void BoardLogic::SolveBoard(SudokuBoard &board) const
 {
+    /*
     int i = 0, j = 0;
     FindFirstUnfixedIndex(i, j, board);
     RecursiveSolver(board, i, j);
+     */
 }
 
 void BoardLogic::RecursiveSolver(SudokuBoard &board, int i, int j) const
 {
+    /*
     // NEEDS REVISION
     if(board.GetCellValue(i, j) == 0)
     {
@@ -78,10 +84,12 @@ void BoardLogic::RecursiveSolver(SudokuBoard &board, int i, int j) const
     {
         RecursiveSolver(board, i, j);
     }
+     */
 }
 
 bool BoardLogic::IsBoardValid(const SudokuBoard &board) const
 {
+    /*
     bool isBoardValid = true;
     for(int i = 1; i <= BOARD_HEIGHT; i++)
     {
@@ -97,11 +105,14 @@ bool BoardLogic::IsBoardValid(const SudokuBoard &board) const
             break;
     }
     return isBoardValid;
+     */
+    return true;
 }
 
 // Private methods
 bool BoardLogic::CheckRow(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    /*
     bool entryValid = true;
     
     int cellValue = board.GetCellValue(cellRow, cellColumn);
@@ -119,10 +130,13 @@ bool BoardLogic::CheckRow(int cellRow, int cellColumn, const SudokuBoard &board)
         }
     }
     return entryValid;
+     */
+    return true;
 }
 
 bool BoardLogic::CheckColumn(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    /*
     bool entryValid = true;
     int cellValue = board.GetCellValue(cellRow, cellColumn);
     int comparisonCellValue = 0;
@@ -139,10 +153,13 @@ bool BoardLogic::CheckColumn(int cellRow, int cellColumn, const SudokuBoard &boa
         }
     }
     return entryValid;
+     */
+    return true;
 }
 
 bool BoardLogic::CheckSquare(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    /*
     bool entryValid = true;
     int cellValue = board.GetCellValue(cellRow, cellColumn);
     int comparisonCellValue = 0;
@@ -170,10 +187,13 @@ bool BoardLogic::CheckSquare(int cellRow, int cellColumn, const SudokuBoard &boa
             break;
     }
     return entryValid;
+     */
+    return true;
 }
 
 bool BoardLogic::CheckCell(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    /*
     bool entryValid = false;
     if(CheckSquare(cellRow, cellColumn, board) && CheckRow(cellRow, cellColumn, board)
        && CheckColumn(cellRow, cellColumn, board))
@@ -181,10 +201,13 @@ bool BoardLogic::CheckCell(int cellRow, int cellColumn, const SudokuBoard &board
         entryValid = true;
     }
     return entryValid;
+     */
+    return true;
 }
 
 void BoardLogic::IncrementIndex(int &i, int &j) const
 {
+    /*
     if(j < 9)
     {
         j++;
@@ -194,10 +217,12 @@ void BoardLogic::IncrementIndex(int &i, int &j) const
         j = 1;
         i++;
     }
+     */
 }
 
 void BoardLogic::DecrementIndex(int &i, int &j) const
 {
+    /*
     if(j > 1)
     {
         j--;
@@ -207,10 +232,12 @@ void BoardLogic::DecrementIndex(int &i, int &j) const
         j = 9;
         i--;
     }
+     */
 }
 
 void BoardLogic::FindFirstUnfixedIndex(int &i, int &j, const SudokuBoard &board) const
 {
+    /*
     i = 1;
     j = 1;
     bool isCellDetermined = board.GetIsCellDetermined(i, j);
@@ -219,10 +246,12 @@ void BoardLogic::FindFirstUnfixedIndex(int &i, int &j, const SudokuBoard &board)
         IncrementIndex(i, j);
         isCellDetermined = board.GetIsCellDetermined(i, j);
     }
+     */
 }
 
 bool BoardLogic::FindNextUnfixedIndex(int &i, int &j, const SudokuBoard &board) const
 {
+    /*
     bool isCellDetermined;
     do
     {
@@ -235,10 +264,13 @@ bool BoardLogic::FindNextUnfixedIndex(int &i, int &j, const SudokuBoard &board) 
         return false;
     
     return true;
+     */
+    return true;
 }
 
 void BoardLogic::FindPreviousUnfixedIndex(int &i, int &j, const SudokuBoard &board) const
 {
+    /*
     bool isCellDetermined;
     do
     {
@@ -246,10 +278,12 @@ void BoardLogic::FindPreviousUnfixedIndex(int &i, int &j, const SudokuBoard &boa
         isCellDetermined = board.GetIsCellDetermined(i, j);
     }
     while(isCellDetermined);
+     */
 }
 
 bool BoardLogic::IsBoardComplete(const SudokuBoard &board) const
 {
+    /*
     for(int i = 1; i <= BOARD_HEIGHT; i++)
     {
         for(int j = 1; j <= BOARD_WIDTH; j++)
@@ -260,5 +294,6 @@ bool BoardLogic::IsBoardComplete(const SudokuBoard &board) const
             }
         }
     }
+     */
     return true;
 }

@@ -17,8 +17,6 @@ public:
     SudokuCell();
     
     // Getters and setters
-    bool GetIsDetermined() const;
-    void SetIsDetermined(bool isDetermined);
     int GetCurrentValue() const;
     void SetCurrentValue(int currentValue);
     std::vector<int> GetValidValues() const;
