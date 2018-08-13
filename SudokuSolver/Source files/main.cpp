@@ -13,5 +13,14 @@ int main()
     userInterface.AutoPopulateSudoku(board);
     userInterface.DisplayBoard(board);
     
+    if(!solver.IsBoardValid(board) || !solver.SolveBoard(board))
+    {
+        userInterface.BoardInvalidMessage();
+    }
+    else
+    {
+        userInterface.DisplayBoard(board);
+    }
+    
     return 0;
 }

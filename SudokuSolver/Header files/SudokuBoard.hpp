@@ -19,12 +19,14 @@ private:
     
 public:
     SudokuBoard();
-    void FillCell(const int cellRow, const int cellColumn, int value);
+    void FillCell(int cellRow, int cellColumn, int value);
     int GetCellValue(int cellRow, int cellColumn) const;
-    void SetCellsValidEntries(const std::vector<int> validEntries);
-    std::vector<int> GetCellsValidEntries() const;
-    bool IsCellDetermined() const;
-    void SetNextValidCellValue();
+    
+    void SetCellsValidEntries(int cellRow, int cellColumn, const std::vector<int> validEntries);
+    std::vector<int> GetCellsValidEntries(int cellRow, int cellColumn) const;
+    
+    bool IsCellAssigned(int cellRow, int cellColumn) const;
+    
     bool GetIsComplete() const;
     void SetIsComplete(const bool isComplete);
 };

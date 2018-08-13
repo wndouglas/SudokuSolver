@@ -1,7 +1,7 @@
 #include "SudokuCell.hpp"
 #include <vector>
 
-SudokuCell::SudokuCell() : currentValue(0), isDetermined(false)
+SudokuCell::SudokuCell() : currentValue(0)
 {}
 
 int SudokuCell::GetCurrentValue() const
@@ -25,4 +25,14 @@ void SudokuCell::SetValidValues(std::vector<int> validValues)
     {
         this->validValues.push_back(i);
     }
+}
+
+bool SudokuCell::GetIsAssigned() const
+{
+    bool isAssigned = false;
+    
+    if(currentValue != 0)
+        isAssigned = true;
+    
+    return isAssigned;
 }

@@ -11,7 +11,6 @@ private:
     // Fields
     int currentValue;
     std::vector<int> validValues;
-    bool isDetermined;
 public:
     // Constructors
     SudokuCell();
@@ -21,6 +20,7 @@ public:
     void SetCurrentValue(int currentValue);
     std::vector<int> GetValidValues() const;
     void SetValidValues(std::vector<int> validValues);
+    bool GetIsAssigned() const;
     
 };
 #endif /* SUDOKU_CELL_hpp */
