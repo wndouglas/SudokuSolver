@@ -1,0 +1,13 @@
+#ifndef JSON_HANDLER_hpp
+#define JSON_HANDLER_hpp
+
+#include "boost/property_tree/ptree.hpp"
+
+class JsonSudokuHandler
+{
+public:
+    static void read_file(std::ifstream& jsonFile, std::vector<std::vector<int> >& elements);
+    static void write_file(std::ofstream& jsonFile, const std::vector<std::pair<std::string, std::string> >& properties, const std::vector<std::vector<int> >& elements);
+};
+
+#endif

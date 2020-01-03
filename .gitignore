@@ -1,0 +1,4 @@
+SudokuSolver/boost/
+Build/
+DerivedData/
+*.xcodeproj
