@@ -1,5 +1,12 @@
 # SudokuSolver
-C++ object oriented Sudoku solver
+An object oriented sudoku solver library written in C++.
+=====
+
+## Features
+* Given a Sudoku board, produces a completed Sudoku board, along with a list of the $Delta$s (changes) and the time taken to calculate the solution.
+* Currently supports a brute-force, [depth-first tree traversal](https://en.wikipedia.org/wiki/Depth-first_search) algorithm.
+* Supports any board size, provided solving algorithm is compatible with given board.
+* You can add your own solving algorithm by implementing the `Solver` abstract class.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local system for development and testing purposes.
