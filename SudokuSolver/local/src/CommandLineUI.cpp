@@ -14,7 +14,7 @@ void CommandLineUI::run()
     jsonPopulateSudoku();
     displayBoard();
     
-    if(!mSolver->IsBoardValid(*mBoard) || !mSolver->SolveBoard(*mBoard))
+    if(!mSudoku.ValidateBoard() || !mSudoku.SolveBoard())
     {
         boardInvalidMessage();
     }
@@ -42,12 +42,12 @@ void CommandLineUI::run()
         }
         
         displayBoard();
-        cout << "Time taken: " << (mSolver->getSolveTime()/1000) << "s" << endl;
-        cout << "Steps taken: " << mSolver->getStepsTaken() << endl;
+        cout << "Time taken: " << mSudoku.GetSolveTime() << "s" << endl;
+        cout << "Steps taken: " << mSudoku.GetStepsTaken() << endl;
     }
 }
 
-void CommandLineUI::jsonPopulateSudoku() const
+void CommandLineUI::jsonPopulateSudoku()
 {
     ifstream jsonFile(mFilePath);
     vector<vector<int> > elements;
@@ -57,12 +57,12 @@ void CommandLineUI::jsonPopulateSudoku() const
     {
         for(int j = 0; j < elements.size(); j++)
         {
-            mBoard->FillCell(i + 1, j + 1, elements[i][j]);
+            mSudoku.SetCell(i + 1, j + 1, elements[i][j]);
         }
     }
 }
 
-void CommandLineUI::manPopulateSudoku() const
+void CommandLineUI::manPopulateSudoku()
 {
     cout << "Please enter the occupied sudoku cells in the following format: " << endl;
     cout << "row column value" << endl;
@@ -95,39 +95,39 @@ void CommandLineUI::manPopulateSudoku() const
             count++;
         }
         
-        mBoard->FillCell(row, column, value);
+        mSudoku.SetCell(row, column, value);
     } while(line != "e");
 }
 
-void CommandLineUI::autoPopulateSudoku() const
+void CommandLineUI::autoPopulateSudoku()
 {
-    mBoard->FillCell(1, 1, 8);
+    mSudoku.SetCell(1, 1, 8);
 
-    mBoard->FillCell(2, 3, 3);
-    mBoard->FillCell(2, 4, 6);
+    mSudoku.SetCell(2, 3, 3);
+    mSudoku.SetCell(2, 4, 6);
 
-    mBoard->FillCell(3, 2, 7);
-    mBoard->FillCell(3, 5, 9);
-    mBoard->FillCell(3, 7, 2);
+    mSudoku.SetCell(3, 2, 7);
+    mSudoku.SetCell(3, 5, 9);
+    mSudoku.SetCell(3, 7, 2);
 
-    mBoard->FillCell(4, 2, 5);
-    mBoard->FillCell(4, 6, 7);
-    mBoard->FillCell(5, 5, 4);
-    mBoard->FillCell(5, 6, 5);
-    mBoard->FillCell(5, 7, 7);
+    mSudoku.SetCell(4, 2, 5);
+    mSudoku.SetCell(4, 6, 7);
+    mSudoku.SetCell(5, 5, 4);
+    mSudoku.SetCell(5, 6, 5);
+    mSudoku.SetCell(5, 7, 7);
 
-    mBoard->FillCell(6, 4, 1);
-    mBoard->FillCell(6, 8, 3);
+    mSudoku.SetCell(6, 4, 1);
+    mSudoku.SetCell(6, 8, 3);
 
-    mBoard->FillCell(7, 3, 1);
-    mBoard->FillCell(7, 8, 6);
-    mBoard->FillCell(7, 9, 8);
-    mBoard->FillCell(8, 3, 8);
-    mBoard->FillCell(8, 4, 5);
-    mBoard->FillCell(8, 8, 1);
+    mSudoku.SetCell(7, 3, 1);
+    mSudoku.SetCell(7, 8, 6);
+    mSudoku.SetCell(7, 9, 8);
+    mSudoku.SetCell(8, 3, 8);
+    mSudoku.SetCell(8, 4, 5);
+    mSudoku.SetCell(8, 8, 1);
 
-    mBoard->FillCell(9, 2, 9);
-    mBoard->FillCell(9, 7, 4);
+    mSudoku.SetCell(9, 2, 9);
+    mSudoku.SetCell(9, 7, 4);
 }
 
 void CommandLineUI::boardInvalidMessage() const
@@ -137,6 +137,9 @@ void CommandLineUI::boardInvalidMessage() const
 
 void CommandLineUI::displayBoard() const
 {
+    const int BOARD_HEIGHT = mSudoku.GetHeight();
+    const int BOARD_WIDTH = mSudoku.GetWidth();
+    
     string positionString;
     switch (mPositionInSolution)
     {
@@ -159,7 +162,7 @@ void CommandLineUI::displayBoard() const
         cout << "|";
         for(int j = 1; j <= BOARD_WIDTH; j++)
         {
-            int boardEntry = mBoard->GetCellValue(i, j);
+            int boardEntry = mSudoku.GetCell(i, j);
             string outputEntry = to_string(boardEntry);
             if(boardEntry == 0)
             {
@@ -185,6 +188,9 @@ void CommandLineUI::displayBoard() const
 
 void CommandLineUI::jsonDisplayBoard() const
 {
+    const int BOARD_HEIGHT = mSudoku.GetHeight();
+    const int BOARD_WIDTH = mSudoku.GetWidth();
+    
     size_t lastindex = mFilePath.find_last_of(".");
     string rawname = mFilePath.substr(0, lastindex);
     string extension = mFilePath.substr(lastindex, mFilePath.end() - mFilePath.begin());
@@ -199,7 +205,7 @@ void CommandLineUI::jsonDisplayBoard() const
         vector<int> row;
         for(int j = 0; j < BOARD_WIDTH; j++)
         {
-            row.push_back(mBoard->GetCellValue(i + 1, j + 1));
+            row.push_back(mSudoku.GetCell(i + 1, j + 1));
         }
         elements.push_back(row);
     }

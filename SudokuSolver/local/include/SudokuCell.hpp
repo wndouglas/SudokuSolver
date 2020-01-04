@@ -4,22 +4,25 @@
 
 #include <vector>
 
-class SudokuCell
+namespace SSLib
 {
-private:
-    // Fields
-    int currentValue;
-    std::vector<int> validValues;
-public:
-    // Constructors
-    SudokuCell();
-    
-    // Getters and setters
-    int GetCurrentValue() const;
-    void SetCurrentValue(int currentValue);
-    std::vector<int> GetValidValues() const;
-    void SetValidValues(std::vector<int> validValues);
-    bool GetIsAssigned() const;
-    
-};
+    class SudokuCell
+    {
+    private:
+        // Fields
+        int currentValue;
+        std::vector<int> validValues;
+    public:
+        // Constructors
+        SudokuCell();
+        
+        // Getters and setters
+        int GetCurrentValue() const;
+        void SetCurrentValue(int currentValue);
+        std::vector<int> GetValidValues() const;
+        void SetValidValues(std::vector<int> validValues);
+        bool GetIsAssigned() const;
+        
+    };
+}
 #endif /* SUDOKU_CELL_hpp */

@@ -1,5 +1,7 @@
 #include "Timer.hpp"
 
+using namespace SSLib;
+
 void Timer::start()
 {
     mBegin = std::chrono::steady_clock::now();
@@ -13,7 +15,7 @@ void Timer::finish()
     mClockRunning = false;
 }
 
-double Timer::getInterval()
+Timer::seconds Timer::getInterval()
 {
     if(!mUsed)
     {
@@ -25,6 +27,6 @@ double Timer::getInterval()
         return 0.0;
     }
     
-    auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(mEnd - mBegin);
-    return interval.count();
+    auto interval = std::chrono::duration_cast<std::chrono::nanoseconds>(mEnd - mBegin);
+    return interval.count()/1000000000.0;
 }

@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
         filePath = argv[1];
     else
         filePath = string();
-
+    
     unique_ptr<UserInterface> UI(new CommandLineUI(filePath));
     UI->run();
     

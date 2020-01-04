@@ -1,21 +1,26 @@
 #include <iostream>
-#include "BoardLogic.hpp"
+#include "RecursiveSudokuSolver.hpp"
+#include "SudokuBoard.hpp"
 
 using namespace std;
+using namespace SSLib;
 
 // Public methods
-double BoardLogic::getSolveTime() const
+double RecursiveSudokuSolver::getSolveTime() const
 {
     return mSolveTime;
 }
 
-long BoardLogic::getStepsTaken() const
+long RecursiveSudokuSolver::getStepsTaken() const
 {
     return mStepsTaken;
 }
 
-bool BoardLogic::UpdateBoard(SudokuBoard &board) const
+bool RecursiveSudokuSolver::UpdateBoard(SudokuBoard &board) const
 {
+    const int BOARD_HEIGHT = board.getHeight();
+    const int BOARD_WIDTH = board.getWidth();
+    
     bool isBoardValid = true;
     for(int i = 1; i <= BOARD_HEIGHT; i++)
     {
@@ -57,8 +62,28 @@ bool BoardLogic::UpdateBoard(SudokuBoard &board) const
     return true;
 }
 
-bool BoardLogic::SolveBoard(SudokuBoard &board)
+bool RecursiveSudokuSolver::CheckBoardSize(const SudokuBoard &board) const
 {
+    int numRows = board.getHeight();
+    int numCols = board.getWidth();
+    
+    if(numRows != numCols || numRows % 3 != 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool RecursiveSudokuSolver::SolveBoard(SudokuBoard &board)
+{
+    if(!CheckBoardSize(board))
+    {
+        return false;
+    }
+    
     mSolveTime = 0.0;
     mStepsTaken = 0;
     
@@ -76,7 +101,7 @@ bool BoardLogic::SolveBoard(SudokuBoard &board)
     return isSolved;
 }
 
-bool BoardLogic::RecursiveSolver(SudokuBoard &board)
+bool RecursiveSudokuSolver::RecursiveSolver(SudokuBoard &board)
 {
     int cellRow, cellColumn;
         
@@ -108,8 +133,10 @@ bool BoardLogic::RecursiveSolver(SudokuBoard &board)
         return false; // this triggers backtracking
 }
 
-bool BoardLogic::IsBoardValid(const SudokuBoard &board) const
+bool RecursiveSudokuSolver::IsBoardValid(const SudokuBoard &board) const
 {
+    const int BOARD_HEIGHT = board.getHeight();
+    const int BOARD_WIDTH = board.getWidth();
     
     bool isBoardValid = true;
     for(int i = 1; i <= BOARD_HEIGHT; i++)
@@ -130,8 +157,9 @@ bool BoardLogic::IsBoardValid(const SudokuBoard &board) const
 }
 
 // Private methods
-bool BoardLogic::CheckRow(int cellRow, int cellColumn, const SudokuBoard &board) const
+bool RecursiveSudokuSolver::CheckRow(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    const int BOARD_WIDTH = board.getWidth();
     
     bool entryValid = true;
     
@@ -154,8 +182,9 @@ bool BoardLogic::CheckRow(int cellRow, int cellColumn, const SudokuBoard &board)
     return true;
 }
 
-bool BoardLogic::CheckColumn(int cellRow, int cellColumn, const SudokuBoard &board) const
+bool RecursiveSudokuSolver::CheckColumn(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
+    const int BOARD_HEIGHT = board.getHeight();
     
     bool entryValid = true;
     int cellValue = board.GetCellValue(cellRow, cellColumn);
@@ -177,7 +206,7 @@ bool BoardLogic::CheckColumn(int cellRow, int cellColumn, const SudokuBoard &boa
     return true;
 }
 
-bool BoardLogic::CheckSquare(int cellRow, int cellColumn, const SudokuBoard &board) const
+bool RecursiveSudokuSolver::CheckSquare(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
     
     bool entryValid = true;
@@ -211,7 +240,7 @@ bool BoardLogic::CheckSquare(int cellRow, int cellColumn, const SudokuBoard &boa
     return true;
 }
 
-bool BoardLogic::CellIsSafe(int cellRow, int cellColumn, const SudokuBoard &board) const
+bool RecursiveSudokuSolver::CellIsSafe(int cellRow, int cellColumn, const SudokuBoard &board) const
 {
     
     bool entryValid = false;
@@ -224,7 +253,7 @@ bool BoardLogic::CellIsSafe(int cellRow, int cellColumn, const SudokuBoard &boar
     return entryValid;
 }
 
-void BoardLogic::IncrementIndex(int &i, int &j) const
+void RecursiveSudokuSolver::IncrementIndex(int &i, int &j) const
 {
     
     if(j < 9)
@@ -239,7 +268,7 @@ void BoardLogic::IncrementIndex(int &i, int &j) const
     
 }
 
-bool BoardLogic::FindFirstUnassignedIndex(int &i, int &j, const SudokuBoard &board) const
+bool RecursiveSudokuSolver::FindFirstUnassignedIndex(int &i, int &j, const SudokuBoard &board) const
 {
     i = 1;
     j = 1;
@@ -247,16 +276,20 @@ bool BoardLogic::FindFirstUnassignedIndex(int &i, int &j, const SudokuBoard &boa
     while(isCellDetermined)
     {
         IncrementIndex(i, j);
-        isCellDetermined = board.IsCellAssigned(i, j);
         
         if(i > 9)
-            return false;
+             return false;
+        
+        isCellDetermined = board.IsCellAssigned(i, j);
     }
     return true;
 }
 
-bool BoardLogic::IsBoardComplete(const SudokuBoard &board) const
+bool RecursiveSudokuSolver::IsBoardComplete(const SudokuBoard &board) const
 {
+    const int BOARD_HEIGHT = board.getHeight();
+    const int BOARD_WIDTH = board.getWidth();
+    
     for(int i = 1; i <= BOARD_HEIGHT; i++)
     {
         for(int j = 1; j <= BOARD_WIDTH; j++)

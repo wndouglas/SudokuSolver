@@ -2,19 +2,19 @@
 #define COMMAND_LINE_UI_HPP
 
 #include "UserInterface.hpp"
-#include "SudokuBoard.hpp"
-#include "BoardLogic.hpp"
+#include "Sudoku.hpp"
+#include "ClassicSudokuBoard.hpp"
+#include "RecursiveSudokuSolver.hpp"
 #include <string>
 
 class CommandLineUI : public UserInterface
 {
 public:
     void run();
-    CommandLineUI(std::string filePath) :
+    CommandLineUI(std::string filePath, int numRows = 9, int numCols = 9) :
         mFilePath(filePath),
         mPositionInSolution(solutionPosition::start),
-        mBoard(new SudokuBoard()),
-        mSolver(new BoardLogic()) { };
+        mSudoku(new SSLib::ClassicSudokuBoard(numRows, numCols), new SSLib::RecursiveSudokuSolver()) { };
     
 private:
     enum solutionPosition
@@ -24,15 +24,14 @@ private:
         end,
     };
     
-    void manPopulateSudoku() const;
-    void autoPopulateSudoku() const;
-    void jsonPopulateSudoku() const;
+    void manPopulateSudoku();
+    void autoPopulateSudoku();
+    void jsonPopulateSudoku();
     void boardInvalidMessage() const;
     void displayBoard() const;
     void jsonDisplayBoard() const;
     
-    std::unique_ptr<SudokuBoard> mBoard;
-    std::unique_ptr<BoardLogic> mSolver;
+    SSLib::Sudoku mSudoku;
     std::string mFilePath;
     solutionPosition mPositionInSolution;
 };

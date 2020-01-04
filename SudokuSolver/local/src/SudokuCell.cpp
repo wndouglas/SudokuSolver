@@ -1,6 +1,8 @@
 #include "SudokuCell.hpp"
 #include <vector>
 
+using namespace SSLib;
+
 SudokuCell::SudokuCell() : currentValue(0)
 {}
 
