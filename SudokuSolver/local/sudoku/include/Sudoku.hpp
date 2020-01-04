@@ -1,8 +1,6 @@
 #ifndef SUDOKU_HPP
 #define SUDOKU_HPP
 
-#include <stdio.h>
-#include <utility>
 #include "SudokuSolver.hpp"
 #include "SudokuBoard.hpp"
 

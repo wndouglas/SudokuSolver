@@ -1,7 +1,6 @@
 #ifndef SUDOKU_BOARD_HPP
 #define SUDOKU_BOARD_HPP
 
-#include <stdio.h>
 #include <vector>
 
 namespace SSLib

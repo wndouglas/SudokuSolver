@@ -1,0 +1,4 @@
+#ifndef SUDOKU_FACTORY_HPP
+#define SUDOKU_FACTORY_HPP
+
+#endif

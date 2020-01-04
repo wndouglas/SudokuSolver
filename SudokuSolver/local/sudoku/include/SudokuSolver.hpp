@@ -1,7 +1,6 @@
 #ifndef SUDOKU_SOLVER_HPP
 #define SUDOKU_SOLVER_HPP
 
-#include <stdio.h>
 #include "SudokuBoard.hpp"
 
 namespace SSLib
