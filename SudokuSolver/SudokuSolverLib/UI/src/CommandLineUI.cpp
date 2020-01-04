@@ -9,20 +9,20 @@
 
 using namespace std;
 
-void CommandLineUI::run()
+void CommandLineUI::Run()
 {
-    jsonPopulateSudoku();
-    displayBoard();
+    JsonPopulateSudoku();
+    DisplayBoard();
     
     if(!mSudoku.ValidateBoard() || !mSudoku.SolveBoard())
     {
-        boardInvalidMessage();
+        BoardInvalidMessage();
     }
     else
     {
-        mPositionInSolution = solutionPosition::end;
+        mPositionInSolution = SolutionPosition::End;
         
-        jsonDisplayBoard();
+        JsonDisplayBoard();
         
         cout << "Solve board? (y/n)";
         string entry;
@@ -41,17 +41,17 @@ void CommandLineUI::run()
             }
         }
         
-        displayBoard();
+        DisplayBoard();
         cout << "Time taken: " << mSudoku.GetSolveTime() << "s" << endl;
         cout << "Steps taken: " << mSudoku.GetStepsTaken() << endl;
     }
 }
 
-void CommandLineUI::jsonPopulateSudoku()
+void CommandLineUI::JsonPopulateSudoku()
 {
     ifstream jsonFile(mFilePath);
     vector<vector<int> > elements;
-    JsonSudokuHandler::read_file(jsonFile, elements);
+    JsonSudokuHandler::ReadFile(jsonFile, elements);
     
     for(int i = 0; i < elements.size(); i++)
     {
@@ -62,7 +62,7 @@ void CommandLineUI::jsonPopulateSudoku()
     }
 }
 
-void CommandLineUI::manPopulateSudoku()
+void CommandLineUI::ManPopulateSudoku()
 {
     cout << "Please enter the occupied sudoku cells in the following format: " << endl;
     cout << "row column value" << endl;
@@ -99,7 +99,7 @@ void CommandLineUI::manPopulateSudoku()
     } while(line != "e");
 }
 
-void CommandLineUI::autoPopulateSudoku()
+void CommandLineUI::AutoPopulateSudoku()
 {
     mSudoku.SetCell(1, 1, 8);
 
@@ -130,12 +130,12 @@ void CommandLineUI::autoPopulateSudoku()
     mSudoku.SetCell(9, 7, 4);
 }
 
-void CommandLineUI::boardInvalidMessage() const
+void CommandLineUI::BoardInvalidMessage() const
 {
     cout << "The entered board was invalid." << endl;
 }
 
-void CommandLineUI::displayBoard() const
+void CommandLineUI::DisplayBoard() const
 {
     const int BOARD_HEIGHT = mSudoku.GetHeight();
     const int BOARD_WIDTH = mSudoku.GetWidth();
@@ -143,10 +143,10 @@ void CommandLineUI::displayBoard() const
     string positionString;
     switch (mPositionInSolution)
     {
-        case solutionPosition::start:
+        case SolutionPosition::Start:
             positionString = "initial";
             break;
-        case solutionPosition::intermediate:
+        case SolutionPosition::Intermediate:
             positionString = "intermediate";
             break;
         default:
@@ -186,7 +186,7 @@ void CommandLineUI::displayBoard() const
     cout << endl;
 }
 
-void CommandLineUI::jsonDisplayBoard() const
+void CommandLineUI::JsonDisplayBoard() const
 {
     const int BOARD_HEIGHT = mSudoku.GetHeight();
     const int BOARD_WIDTH = mSudoku.GetWidth();
@@ -210,5 +210,5 @@ void CommandLineUI::jsonDisplayBoard() const
         elements.push_back(row);
     }
     
-    JsonSudokuHandler::write_file(jsonFile, properties, elements);
+    JsonSudokuHandler::WriteFile(jsonFile, properties, elements);
 }

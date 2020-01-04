@@ -33,7 +33,6 @@ namespace SSLib
         // these are both abstract classes which can be changed at runtime, injected as dependencies
         std::unique_ptr<SSLib::SudokuBoard> mBoard;
         std::unique_ptr<SSLib::SudokuSolver> mSolver;
-        Sudoku() { } ;
     };
 }
 

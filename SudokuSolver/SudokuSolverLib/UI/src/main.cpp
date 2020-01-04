@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
         filePath = string();
     
     unique_ptr<UserInterface> UI(new CommandLineUI(filePath));
-    UI->run();
+    UI->Run();
     
     return 0;
 }

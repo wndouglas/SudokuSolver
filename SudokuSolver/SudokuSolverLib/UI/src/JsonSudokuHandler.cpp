@@ -6,7 +6,7 @@
 using boost::property_tree::ptree;
 using namespace std;
 
-void JsonSudokuHandler::read_file(std::ifstream& jsonFile, std::vector<std::vector<int> >& elements)
+void JsonSudokuHandler::ReadFile(std::ifstream& jsonFile, std::vector<std::vector<int> >& elements)
 {
     elements.clear();
     
@@ -75,7 +75,7 @@ void JsonSudokuHandler::read_file(std::ifstream& jsonFile, std::vector<std::vect
     }
 }
 
-void JsonSudokuHandler::write_file(std::ofstream& jsonFile, const std::vector<std::pair<std::string, std::string> >& properties, const std::vector<std::vector<int> >& elements)
+void JsonSudokuHandler::WriteFile(std::ofstream& jsonFile, const std::vector<std::pair<std::string, std::string> >& properties, const std::vector<std::vector<int> >& elements)
 {
     
 }

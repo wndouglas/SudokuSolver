@@ -11,7 +11,7 @@ namespace SSLib
     class ClassicSudokuBoard : public SudokuBoard
     {
     public:
-        ClassicSudokuBoard(int numRows, int numCols);
+        ClassicSudokuBoard(int numRows = 9, int numCols = 9);
         void FillCell(int cellRow, int cellColumn, int value);
         int GetCellValue(int cellRow, int cellColumn) const;
         void SetCellsValidEntries(int cellRow, int  cellColumn, const std::vector<int> validEntries);
