@@ -8,6 +8,7 @@
 #include <vector>
 
 using namespace std;
+using namespace SSLib;
 
 void CommandLineUI::Run()
 {

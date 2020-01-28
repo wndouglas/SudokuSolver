@@ -1,10 +1,8 @@
-#include <iostream>
 #include <string>
-#include <fstream>
-#include <iostream>
 #include "CommandLineUI.hpp"
 
 using namespace std;
+using namespace SSLib;
 
 int main(int argc, char *argv[])
 {
