@@ -2,8 +2,6 @@
 #define COMMAND_LINE_UI_HPP
 
 #include "UserInterface.hpp"
-#include "Sudoku.hpp"
-#include "SudokuFactory.hpp"
 #include <string>
 
 namespace SSLib
@@ -12,29 +10,13 @@ namespace SSLib
     {
     public:
         void Run();
-        CommandLineUI(std::string filePath, int numRows = 9, int numCols = 9) :
-            mFilePath(filePath),
-            mPositionInSolution(SolutionPosition::Start),
-            mSudoku(SSLib::SudokuFactory::CreateSudoku()) { };
+        CommandLineUI(std::string filePath, int numRows = 9, int numCols = 9);
 
     private:
-        enum SolutionPosition
-        {
-            Start,
-            Intermediate,
-            End,
-        };
+        class CommandLineUiImpl;
+        std::unique_ptr<CommandLineUiImpl> pCommandLineUiImpl;
 
-        void ManPopulateSudoku();
-        void AutoPopulateSudoku();
-        void JsonPopulateSudoku();
-        void BoardInvalidMessage() const;
-        void DisplayBoard() const;
         void JsonDisplayBoard() const;
-
-        SSLib::Sudoku mSudoku;
-        std::string mFilePath;
-        SolutionPosition mPositionInSolution;
     };
 }
 

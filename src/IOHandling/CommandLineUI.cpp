@@ -1,54 +1,46 @@
 #include "CommandLineUI.hpp"
-#include "SudokuBoard.hpp"
 #include "JsonSudokuHandler.hpp"
+#include "SudokuFactory.hpp"
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <sstream>
-#include <vector>
 
 using namespace std;
 using namespace SSLib;
 
-void CommandLineUI::Run()
+class CommandLineUI::CommandLineUiImpl
 {
-    JsonPopulateSudoku();
-    DisplayBoard();
-    
-    if(!mSudoku.ValidateBoard() || !mSudoku.SolveBoard())
-    {
-        BoardInvalidMessage();
-    }
-    else
-    {
-        mPositionInSolution = SolutionPosition::End;
-        
-        JsonDisplayBoard();
-        
-        cout << "Solve board? (y/n)";
-        string entry;
-        bool stay = true;
-        while(stay)
-        {
-            getline(cin, entry);
-            if(entry == "y")
-            {
-                stay = false;
-            }
-            
-            if(entry == "n")
-            {
-                return;
-            }
-        }
-        
-        DisplayBoard();
-        cout << "Time taken: " << mSudoku.GetSolveTime() << "s" << endl;
-        cout << "Steps taken: " << mSudoku.GetStepsTaken() << endl;
-    }
-}
+public:
+    CommandLineUiImpl(string filePath);
 
-void CommandLineUI::JsonPopulateSudoku()
+    enum SolutionPosition
+    {
+        Start,
+        Intermediate,
+        End,
+    };
+
+    void JsonPopulateSudoku();
+    void ManPopulateSudoku();
+    void AutoPopulateSudoku();
+    void BoardInvalidMessage() const;
+    void DisplayBoard() const;
+    void JsonDisplayBoard() const;
+    void Run();
+
+    SSLib::Sudoku mSudoku;
+    std::string mFilePath;
+    SolutionPosition mPositionInSolution;
+
+private:
+
+};
+
+CommandLineUI::CommandLineUiImpl::CommandLineUiImpl(string filePath) :
+    mFilePath(filePath),
+    mPositionInSolution(SolutionPosition::Start),
+    mSudoku(SSLib::SudokuFactory::CreateSudoku()) { }
+
+void CommandLineUI::CommandLineUiImpl::JsonPopulateSudoku()
 {
     ifstream jsonFile(mFilePath);
     vector<vector<int> > elements;
@@ -63,7 +55,7 @@ void CommandLineUI::JsonPopulateSudoku()
     }
 }
 
-void CommandLineUI::ManPopulateSudoku()
+void CommandLineUI::CommandLineUiImpl::ManPopulateSudoku()
 {
     cout << "Please enter the occupied sudoku cells in the following format: " << endl;
     cout << "row column value" << endl;
@@ -100,7 +92,7 @@ void CommandLineUI::ManPopulateSudoku()
     } while(line != "e");
 }
 
-void CommandLineUI::AutoPopulateSudoku()
+void CommandLineUI::CommandLineUiImpl::AutoPopulateSudoku()
 {
     mSudoku.SetCell(1, 1, 8);
 
@@ -131,12 +123,12 @@ void CommandLineUI::AutoPopulateSudoku()
     mSudoku.SetCell(9, 7, 4);
 }
 
-void CommandLineUI::BoardInvalidMessage() const
+void CommandLineUI::CommandLineUiImpl::BoardInvalidMessage() const
 {
     cout << "The entered board was invalid." << endl;
 }
 
-void CommandLineUI::DisplayBoard() const
+void CommandLineUI::CommandLineUiImpl::DisplayBoard() const
 {
     const int BOARD_HEIGHT = mSudoku.GetHeight();
     const int BOARD_WIDTH = mSudoku.GetWidth();
@@ -187,7 +179,8 @@ void CommandLineUI::DisplayBoard() const
     cout << endl;
 }
 
-void CommandLineUI::JsonDisplayBoard() const
+
+void CommandLineUI::CommandLineUiImpl::JsonDisplayBoard() const
 {
     const int BOARD_HEIGHT = mSudoku.GetHeight();
     const int BOARD_WIDTH = mSudoku.GetWidth();
@@ -212,4 +205,74 @@ void CommandLineUI::JsonDisplayBoard() const
     }
     
     JsonSudokuHandler::WriteFile(jsonFile, properties, elements);
+}
+
+void CommandLineUI::CommandLineUiImpl::Run()
+{
+    cout << "Choose input type: (enter number for choice)" << endl;
+    cout << "(1) : manual board population" << endl;
+    cout << "(2) : automatic board population" << endl;
+    cout << "(3) : JSON board population" << endl;
+    cout << "Default choice is JSON" << endl;
+    cout << "Type choice below: " << endl;
+
+    int n = 3;
+    cin >> n;
+
+    switch(n)
+    {
+        case 1:
+            ManPopulateSudoku();
+        break;
+        case 2:
+            AutoPopulateSudoku();
+        break;
+        case 3:
+            JsonPopulateSudoku();
+        break;
+        default:
+        break;
+    }
+
+    DisplayBoard();
+    
+    if(!mSudoku.ValidateBoard() || !mSudoku.SolveBoard())
+    {
+        BoardInvalidMessage();
+    }
+    else
+    {
+        mPositionInSolution = SolutionPosition::End;
+        
+        JsonDisplayBoard();
+        
+        cout << "Solve board? (y/n)";
+        string entry;
+        bool stay = true;
+        while(stay)
+        {
+            getline(cin, entry);
+            if(entry == "y")
+            {
+                stay = false;
+            }
+            
+            if(entry == "n")
+            {
+                return;
+            }
+        }
+        
+        DisplayBoard();
+        cout << "Time taken: " << mSudoku.GetSolveTime() << "s" << endl;
+        cout << "Steps taken: " << mSudoku.GetStepsTaken() << endl;
+    }
+}
+
+CommandLineUI::CommandLineUI(std::string filePath, int numRows, int numCols) : 
+    pCommandLineUiImpl(new CommandLineUiImpl(filePath)) { };
+
+void CommandLineUI::Run()
+{
+    pCommandLineUiImpl->Run();
 }
