@@ -3,6 +3,7 @@ project(SudokuSolver VERSION 0.1.0)
 
 set (CMAKE_CXX_STANDARD 14)
 
+# this is bad - TODO - remove recursive file find instead specify the files manually
 file(GLOB_RECURSE SOURCES src/*.cpp src/*.hpp)
 file(GLOB_RECURSE HEADER_FILES include/*.hpp)
 
