@@ -1,0 +1,6 @@
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/edit_cache.dir
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/rebuild_cache.dir
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/package_source.dir
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/SudokuSolver.dir
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/package.dir
+/Users/willdouglas/Documents/Developer/Projects/Git/SudokuSolver/CMakeFiles/SudokuSolverExample.dir

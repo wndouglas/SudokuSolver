@@ -6,22 +6,20 @@ set (CMAKE_CXX_STANDARD 14)
 file(GLOB_RECURSE SOURCES src/*.cpp src/*.hpp)
 file(GLOB_RECURSE HEADER_FILES include/*.hpp)
 
+# ------------------------------------- Build main library ---------------------------------------------
+add_library(SudokuSolver STATIC ${SOURCES} ${HEADER_FILES})
+target_include_directories(SudokuSolver PRIVATE include/sudoku include/IOHandling src/common)
+
 # Check for Boost
 set(Boost_USE_STATIC_LIBS OFF) 
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
 find_package(Boost 1.71.0) 
 
-# ------------------------------------- Build main library ---------------------------------------------
 if(Boost_FOUND)
-    add_library(
-    SudokuSolver STATIC 
-    ${SOURCES}
-    ${HEADER_FILES}
-    ${Boost_INCLUDE_DIRS}) 
-
-    target_include_directories(SudokuSolver PRIVATE include/sudoku include/IOHandling src/common)
-    include_directories(${Boost_INCLUDE_DIRS}) 
+    target_include_directories(SudokuSolver PRIVATE ${Boost_INCLUDE_DIRS})
+else()
+    MESSAGE(FATAL_ERROR "Cannot find boost libraries")
 endif()
 # ------------------------------------------------------------------------------------------------------
 
