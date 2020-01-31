@@ -2,4 +2,4 @@ external/
 build/
 *.xcodeproj
 *.vscode
-/*.DS_Store
+*.DS_Store
