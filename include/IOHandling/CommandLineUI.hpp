@@ -15,8 +15,6 @@ namespace SSLib
     private:
         class CommandLineUiImpl;
         std::unique_ptr<CommandLineUiImpl> pCommandLineUiImpl;
-
-        void JsonDisplayBoard() const;
     };
 }
 
