@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.5)
 project(SudokuSolver VERSION 0.1.0)
 
-set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 14)
 
 file(GLOB_RECURSE SOURCES src/*.cpp src/*.hpp)
 file(GLOB_RECURSE HEADER_FILES include/*.hpp)
@@ -27,13 +27,9 @@ endif()
 
 
 # ---------------------------------- Example executable file -------------------------------------------
-add_executable(SudokuSolverExample examples/example1.cpp ${HEADER_FILES})
-find_library (SUDOKU_SOLVER_LIB NAMES libSudokuSolver.a HINTS ${CMAKE_SOURCE_DIR}/build NO_DEFAULT_PATH)
+add_executable(SudokuSolverExample examples/example1.cpp)
+target_link_libraries(SudokuSolverExample PRIVATE SudokuSolver)
 include_directories(include/IOHandling)
-
-if(SUDOKU_SOLVER_LIB)
-    target_link_libraries(SudokuSolverExample ${SUDOKU_SOLVER_LIB})
-endif()
 # ------------------------------------------------------------------------------------------------------
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
