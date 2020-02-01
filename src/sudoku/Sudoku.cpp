@@ -1,16 +1,16 @@
-#include "Sudoku.hpp"
+#include "sudoku/Sudoku.hpp"
 
 using namespace SSLib;
 
-void Sudoku::SetSolver(SudokuSolver* solver)
+void Sudoku::SetSolver(std::unique_ptr<SSLib::SudokuSolver>& solver)
 {
-    mSolver.reset(solver);
+    mSolver = std::move(solver);
     return;
 }
 
-void Sudoku::SetBoard(SudokuBoard* board)
+void Sudoku::SetBoard(std::unique_ptr<SSLib::SudokuBoard>& board)
 {
-    mBoard.reset(board);
+    mBoard = std::move(board);
     return;
 }
 

@@ -1,27 +1,27 @@
-#include "SudokuFactory.hpp"
+#include "sudoku/SudokuFactory.hpp"
 
 using namespace SSLib;
 
 Sudoku SudokuFactory::CreateSudoku(BoardType board, SolverType solver)
 {
-    SudokuBoard *pBoard;
-    SudokuSolver *pSolver;
+    std::unique_ptr<SudokuBoard> pBoard;
+    std::unique_ptr<SudokuSolver> pSolver;
     
     switch (board) {
         case SudokuFactory::BoardType::ClassicBoard:
-            pBoard = new ClassicSudokuBoard();
+            pBoard.reset(new ClassicSudokuBoard());
             break;
         default:
-            pBoard = new ClassicSudokuBoard();
+            pBoard.reset(new ClassicSudokuBoard());
             break;
     }
     
     switch (solver) {
         case SudokuFactory::SolverType::RecursiveSolver:
-            pSolver = new RecursiveSudokuSolver();
+            pSolver.reset(new RecursiveSudokuSolver());
             break;
         default:
-            pSolver = new RecursiveSudokuSolver();
+            pSolver.reset(new RecursiveSudokuSolver());
             break;
     }
     
@@ -30,19 +30,21 @@ Sudoku SudokuFactory::CreateSudoku(BoardType board, SolverType solver)
 
 Sudoku SudokuFactory::CreateSudoku()
 {
-    return Sudoku(new ClassicSudokuBoard(), new RecursiveSudokuSolver());
+    std::unique_ptr<SudokuBoard> pBoard(new ClassicSudokuBoard());
+    std::unique_ptr<SudokuSolver> pSolver(new RecursiveSudokuSolver());
+    return Sudoku(pBoard, pSolver);
 }
 
 void SudokuFactory::ChangeBoard(SSLib::Sudoku &sudoku, BoardType board)
 {
-    SudokuBoard *pBoard;
+    std::unique_ptr<SudokuBoard> pBoard;
     
     switch (board) {
         case SudokuFactory::BoardType::ClassicBoard:
-            pBoard = new ClassicSudokuBoard();
+            pBoard.reset(new ClassicSudokuBoard());
             break;
         default:
-            pBoard = new ClassicSudokuBoard();
+            pBoard.reset(new ClassicSudokuBoard());
             break;
     }
     
@@ -51,14 +53,14 @@ void SudokuFactory::ChangeBoard(SSLib::Sudoku &sudoku, BoardType board)
 
 void SudokuFactory::ChangeSolver(SSLib::Sudoku &sudoku, SolverType solver)
 {
-    SudokuSolver *pSolver;
+    std::unique_ptr<SudokuSolver> pSolver;
     
     switch (solver) {
         case SudokuFactory::SolverType::RecursiveSolver:
-            pSolver = new RecursiveSudokuSolver();
+            pSolver.reset(new RecursiveSudokuSolver());
             break;
         default:
-            pSolver = new RecursiveSudokuSolver();
+            pSolver.reset(new RecursiveSudokuSolver());
             break;
     }
     

@@ -4,7 +4,7 @@
 
 #include "SudokuCell.hpp"
 #include "SudokuBoard.hpp"
-#include "Point.hpp"
+#include "common/Point.hpp"
 
 namespace SSLib
 {

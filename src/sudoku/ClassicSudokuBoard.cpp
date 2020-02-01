@@ -1,5 +1,5 @@
-#include "ClassicSudokuBoard.hpp"
-#include "SudokuCell.hpp"
+#include "sudoku/ClassicSudokuBoard.hpp"
+#include "sudoku/SudokuCell.hpp"
 
 using namespace std;
 using namespace SSLib;

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "RecursiveSudokuSolver.hpp"
-#include "SudokuBoard.hpp"
+#include "sudoku/RecursiveSudokuSolver.hpp"
+#include "sudoku/SudokuBoard.hpp"
 
 using namespace std;
 using namespace SSLib;

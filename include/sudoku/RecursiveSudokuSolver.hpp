@@ -1,7 +1,7 @@
 #ifndef RECURSIVE_SUDOKU_SOLVER_HPP
 #define RECURSIVE_SUDOKU_SOLVER_HPP
 
-#include "Timer.hpp"
+#include "common/Timer.hpp"
 #include <vector>
 #include "SudokuSolver.hpp"
 

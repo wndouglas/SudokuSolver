@@ -1,6 +1,6 @@
-#include "CommandLineUI.hpp"
-#include "JsonSudokuHandler.hpp"
-#include "SudokuFactory.hpp"
+#include "IOHandling/CommandLineUI.hpp"
+#include "IOHandling/JsonSudokuHandler.hpp"
+#include "sudoku/SudokuFactory.hpp"
 #include <iostream>
 #include <fstream>
 

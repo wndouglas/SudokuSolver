@@ -1,4 +1,4 @@
-#include "SudokuCell.hpp"
+#include "sudoku/SudokuCell.hpp"
 #include <vector>
 
 using namespace SSLib;

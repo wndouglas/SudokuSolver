@@ -6,14 +6,23 @@
 
 namespace SSLib
 {
-    // this class forms our API for the sudoku solver, all public usage of the sudoku solving library comes through this class.
+    /** @brief Main sudoku class.
+
+    This class provides the main API for the sudoku solver. It contains both a sudoku and a solver,
+    along with the methods for populating and solving a sudoku.
+    @author Will Douglas
+    @date January 2020
+    */
     class Sudoku
     {
     public:
-        Sudoku(SSLib::SudokuBoard* board, SSLib::SudokuSolver* solver) : mBoard(board), mSolver(solver) { };
+        /** Main constructor for the sudoku class. Takes ownership of the board and solver
+         * passed in as arguments.
+        */
+        Sudoku(std::unique_ptr<SSLib::SudokuBoard>& board, std::unique_ptr<SSLib::SudokuSolver>& solver) : mBoard(std::move(board)), mSolver(std::move(solver)) { };
     
-        void SetSolver(SSLib::SudokuSolver* solver);
-        void SetBoard(SSLib::SudokuBoard* board);
+        void SetSolver(std::unique_ptr<SSLib::SudokuSolver>& solver);
+        void SetBoard(std::unique_ptr<SSLib::SudokuBoard>& board);
     
         bool ValidateBoard() const;
     
